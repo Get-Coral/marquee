@@ -30,7 +30,7 @@ const host = process.env.HOST ?? "0.0.0.0"
 const port = Number.parseInt(process.env.PORT ?? "3000", 10)
 
 const CLIENT_DIR = path.join(__dirname, "dist", "client")
-const MIME: Record<string, string> = {
+const MIME = {
 	".js": "application/javascript; charset=utf-8",
 	".mjs": "application/javascript; charset=utf-8",
 	".css": "text/css; charset=utf-8",
@@ -42,6 +42,8 @@ const MIME: Record<string, string> = {
 	".woff2": "font/woff2",
 	".json": "application/json; charset=utf-8",
 }
+
+const sockets = new Set()
 
 function serveStatic(url, res) {
 	const filePath = path.join(CLIENT_DIR, url.pathname)
@@ -60,7 +62,7 @@ function serveStatic(url, res) {
 	return true
 }
 
-http.createServer(async (req, res) => {
+const nodeServer = http.createServer(async (req, res) => {
 	try {
 		const origin = `http://${req.headers.host ?? `${host}:${port}`}`
 		const url = new URL(req.url ?? "/", origin)
@@ -102,6 +104,42 @@ http.createServer(async (req, res) => {
 		res.setHeader("content-type", "text/plain")
 		res.end("Server error.")
 	}
-}).listen(port, host, () => {
+})
+
+nodeServer.on("connection", (socket) => {
+	sockets.add(socket)
+	socket.on("close", () => {
+		sockets.delete(socket)
+	})
+})
+
+nodeServer.on("error", (error) => {
+	console.error(error)
+	process.exit(1)
+})
+
+let shuttingDown = false
+
+function shutdown(signal) {
+	if (shuttingDown) return
+	shuttingDown = true
+	console.log(`\nReceived ${signal}. Shutting down Coral module server...`)
+	nodeServer.close((error) => {
+		if (error) {
+			console.error(error)
+			process.exit(1)
+		}
+		process.exit(0)
+	})
+	setTimeout(() => {
+		for (const socket of sockets) socket.destroy()
+	}, 5000).unref()
+}
+
+for (const signal of ["SIGINT", "SIGTERM", "SIGHUP"]) {
+	process.on(signal, () => shutdown(signal))
+}
+
+nodeServer.listen(port, host, () => {
 	console.log(`🪸 Coral module listening on http://${host}:${port}`)
 })
