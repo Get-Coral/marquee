@@ -4,6 +4,7 @@ import type { MarqueeDashboardData, MarqueeSessionTile } from "#/lib/jellyfin";
 import { fetchMarqueeDashboard, fetchSetupStatus } from "#/server/functions";
 
 const HERO_ROTATE_INTERVAL_MS = 12000;
+const HERO_TRANSITION_MS = 2200;
 
 export const Route = createFileRoute("/")({
 	loader: async () => {
@@ -166,7 +167,7 @@ function Home() {
 		const timeout = window.setTimeout(() => {
 			setHeroPrevious(null);
 			setHeroTransitioning(false);
-		}, 1400);
+		}, HERO_TRANSITION_MS);
 
 		return () => {
 			window.clearTimeout(timeout);

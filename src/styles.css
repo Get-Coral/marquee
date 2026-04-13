@@ -388,10 +388,7 @@
   inset: 0;
   object-fit: cover;
   position: absolute;
-  transition:
-    opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 1.4s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: none;
   width: 100%;
 }
 
@@ -402,7 +399,7 @@
 
 .marquee-ambient-image--current.is-entering {
   animation:
-    marquee-live-hero-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) both,
+    marquee-ambient-fade-in 2.2s ease-in-out both,
     marquee-hero-drift 24s ease-in-out infinite alternate;
 }
 
@@ -412,9 +409,37 @@
 }
 
 .marquee-ambient-image--previous.is-exiting {
-  filter: saturate(0.9);
-  opacity: 0;
-  transform: scale(1.015);
+  animation:
+    marquee-ambient-fade-out 2.2s ease-in-out both,
+    marquee-hero-drift 24s ease-in-out infinite alternate;
+}
+
+@keyframes marquee-ambient-fade-in {
+  0% {
+    filter: saturate(0.9);
+    opacity: 0;
+    transform: scale(1.012);
+  }
+
+  100% {
+    filter: saturate(1);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes marquee-ambient-fade-out {
+  0% {
+    filter: saturate(1);
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    filter: saturate(0.9);
+    opacity: 0;
+    transform: scale(1.014);
+  }
 }
 
 .marquee-ambient-vignette {
@@ -509,29 +534,31 @@
 }
 
 .marquee-session-pill {
-  backdrop-filter: blur(6px);
-  background: rgb(0 0 0 / 36%);
-  border: 1px solid rgb(255 255 255 / 13%);
-  border-radius: 999px;
-  max-width: 22rem;
-  min-width: 11rem;
-  padding: 0.48rem 0.82rem 0.52rem;
+  backdrop-filter: blur(8px);
+  background:
+    linear-gradient(160deg, rgb(255 255 255 / 7%), rgb(255 255 255 / 2%)),
+    rgb(0 0 0 / 34%);
+  border: 1px solid rgb(255 255 255 / 17%);
+  border-radius: 18px;
+  max-width: min(24rem, 42vw);
+  padding: 0.5rem 0.86rem 0.56rem;
 }
 
 .marquee-session-pill p {
-  color: rgb(240 237 232 / 65%);
+  color: rgb(240 237 232 / 62%);
   font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.2em;
   margin: 0;
   text-transform: uppercase;
 }
 
 .marquee-session-pill h3 {
   color: var(--color-ink);
-  font-size: 0.94rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  margin: 0.28rem 0 0;
+  line-height: 1.2;
+  margin: 0.24rem 0 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
