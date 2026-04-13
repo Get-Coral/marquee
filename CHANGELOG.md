@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/Get-Coral/marquee/compare/v1.0.0...v1.0.1) (2026-04-13)
+
+
+### Bug Fixes
+
+* make error state valid HTML ([693c02e](https://github.com/Get-Coral/marquee/commit/693c02ec5a5e66002ed9eda9717a3f52e322519c))
+* update error components ([65489e8](https://github.com/Get-Coral/marquee/commit/65489e8f83e25c17792dd283609cf07dcf8015f5))
+
 ## 1.0.0 (2026-04-13)
 
 
