@@ -53,40 +53,32 @@ function RootErrorPage({ error, reset }: { error: Error; reset: () => void }) {
 	}
 
 	return (
-		<html lang="en">
-			<head>
-				<HeadContent />
-			</head>
-			<body>
-				<CoralErrorState
-					eyebrow="Marquee"
-					title="Something went wrong"
-					description={error?.message ?? "An unexpected error happened while loading this route."}
-					primaryAction={{ label: "Try again", onClick: handleRetry }}
-					secondaryAction={{ label: "Back home", href: "/", variant: "neutral" }}
-				/>
-				<Scripts />
-			</body>
-		</html>
+		<RootStateLayout>
+			<CoralErrorState
+				eyebrow="Marquee"
+				title="Something went wrong"
+				description={error?.message ?? "An unexpected error happened while loading this route."}
+				primaryAction={{ label: "Try again", onClick: handleRetry }}
+				secondaryAction={{ label: "Back home", href: "/", variant: "neutral" }}
+			/>
+		</RootStateLayout>
 	);
 }
 
 function RootNotFoundPage() {
 	return (
-		<html lang="en">
-			<head>
-				<HeadContent />
-			</head>
-			<body>
-				<CoralErrorState
-					code="404"
-					eyebrow="Marquee"
-					title="Page not found"
-					description="The page you are looking for does not exist or has moved."
-					primaryAction={{ label: "Back home", href: "/" }}
-				/>
-				<Scripts />
-			</body>
-		</html>
+		<RootStateLayout>
+			<CoralErrorState
+				code="404"
+				eyebrow="Marquee"
+				title="Page not found"
+				description="The page you are looking for does not exist or has moved."
+				primaryAction={{ label: "Back home", href: "/" }}
+			/>
+		</RootStateLayout>
 	);
+}
+
+function RootStateLayout({ children }: { children: ReactNode }) {
+	return <main className="min-h-screen bg-abyss">{children}</main>;
 }
