@@ -524,6 +524,7 @@
   flex-wrap: wrap;
   gap: 0.8rem;
   justify-content: space-between;
+  margin-top: 1.4rem;
 }
 
 .marquee-session-pills {
