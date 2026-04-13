@@ -53,32 +53,24 @@ function RootErrorPage({ error, reset }: { error: Error; reset: () => void }) {
 	}
 
 	return (
-		<RootStateLayout>
-			<CoralErrorState
-				eyebrow="Marquee"
-				title="Something went wrong"
-				description={error?.message ?? "An unexpected error happened while loading this route."}
-				primaryAction={{ label: "Try again", onClick: handleRetry }}
-				secondaryAction={{ label: "Back home", href: "/", variant: "neutral" }}
-			/>
-		</RootStateLayout>
+		<CoralErrorState
+			eyebrow="Marquee"
+			title="Something went wrong"
+			description={error?.message ?? "An unexpected error happened while loading this route."}
+			primaryAction={{ label: "Try again", onClick: handleRetry }}
+			secondaryAction={{ label: "Back home", href: "/", variant: "neutral" }}
+		/>
 	);
 }
 
 function RootNotFoundPage() {
 	return (
-		<RootStateLayout>
-			<CoralErrorState
-				code="404"
-				eyebrow="Marquee"
-				title="Page not found"
-				description="The page you are looking for does not exist or has moved."
-				primaryAction={{ label: "Back home", href: "/" }}
-			/>
-		</RootStateLayout>
+		<CoralErrorState
+			code="404"
+			eyebrow="Marquee"
+			title="Page not found"
+			description="The page you are looking for does not exist or has moved."
+			primaryAction={{ label: "Back home", href: "/" }}
+		/>
 	);
-}
-
-function RootStateLayout({ children }: { children: ReactNode }) {
-	return <main className="min-h-screen bg-abyss">{children}</main>;
 }
