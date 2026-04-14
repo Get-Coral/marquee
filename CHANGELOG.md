@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/Get-Coral/marquee/compare/v1.0.1...v1.0.2) (2026-04-13)
+
+
+### Bug Fixes
+
+* remove data ([4195464](https://github.com/Get-Coral/marquee/commit/419546469f2a0b449e388a0d20a63afa902d4836))
+
 ## [1.0.1](https://github.com/Get-Coral/marquee/compare/v1.0.0...v1.0.1) (2026-04-13)
 
 
