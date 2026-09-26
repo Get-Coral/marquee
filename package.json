@@ -19,7 +19,7 @@
     "format": "biome format . --write"
   },
   "dependencies": {
-    "@get-coral/jellyfin": "^1.8.0",
+    "@get-coral/jellyfin": "^1.9.1",
     "@get-coral/ui": "^1.0.2",
     "@tailwindcss/vite": "^4.2.2",
     "@tanstack/react-query": "^5.96.2",
@@ -37,10 +37,10 @@
     "@biomejs/biome": "^2.4.11",
     "@get-coral/biome-config": "^0.2.0",
     "@get-coral/tsconfig": "^0.2.0",
-    "@types/node": "^24.5.2",
     "@tanstack/devtools-vite": "^0.6.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.2",
+    "@types/node": "^24.5.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.2.0",
