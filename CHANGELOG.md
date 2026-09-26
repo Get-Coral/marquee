@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/Get-Coral/marquee/compare/v1.0.2...v1.0.3) (2026-09-26)
+
+
+### Bug Fixes
+
+* drop the Docker Hub categories payload, which the API ignores ([#23](https://github.com/Get-Coral/marquee/issues/23)) ([ad43c70](https://github.com/Get-Coral/marquee/commit/ad43c7081cf113f1520ea0d6521cb527514d64d0))
+* pin pnpm explicitly so release-please cannot break the build ([9b1aa2a](https://github.com/Get-Coral/marquee/commit/9b1aa2ad7a88ce90a42137ba026ecc72884ce949))
+
 ## [1.0.2](https://github.com/Get-Coral/marquee/compare/v1.0.1...v1.0.2) (2026-04-13)
 
 
