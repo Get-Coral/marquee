@@ -1,4 +1,4 @@
-# coral-module
+# Marquee
 
 [![GitHub Sponsors](https://img.shields.io/badge/Sponsor-ElianCodes-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/ElianCodes)
 [![Discord](https://img.shields.io/discord/1495441903297237043?label=Discord&logo=discord&logoColor=white&color=5865F2)](https://discord.gg/M3wzFpGbzp)
@@ -63,18 +63,21 @@ pnpm test       # Run tests
 ## Docker
 
 ```bash
-# Build
-docker build -t coral-module .
+# Pull the published image
+docker pull getcoral/marquee:latest
+
+# Or build it yourself
+docker build -t marquee .
 
 # Run
 docker run -p 3000:3000 \
   -e JELLYFIN_URL=http://your-nas:8096 \
   -e JELLYFIN_API_KEY=your-key \
   -e JELLYFIN_USER_ID=your-user-id \
-  coral-module
+  getcoral/marquee:latest
 ```
 
-Published automatically to `ghcr.io/get-coral/<module-name>` on every release via GitHub Actions.
+Published automatically to [`getcoral/marquee`](https://hub.docker.com/r/getcoral/marquee) on Docker Hub on every release via GitHub Actions.
 
 ---
 
